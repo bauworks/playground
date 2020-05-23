@@ -2,7 +2,7 @@
 
 import numpy as np
 
-#array() でNumPyの配列を作る
+#3.1 array() でNumPyの配列を作る
 a = np.array([0, 1, 2])
 print(type(a))
 print(a)

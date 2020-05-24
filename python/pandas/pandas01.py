@@ -37,3 +37,19 @@ print(bank_data.head(10))
 
 print("TAIL")
 print(bank_data.tail(10))
+
+
+#3.2 スライス
+#位置の数値でスライスする
+print(bank_data.iloc[1, 1])    # 1番目のみ
+print(bank_data.iloc[0:3, 0:3])   # 0番目から4番目まで
+print(bank_data.iloc[:11:2, :11:2])    # 先頭から12番目まで（増分2で）
+
+print(bank_data.iloc[100:110, :10])
+
+
+#列名でスライスする
+print(bank_data.loc[1, "job"])
+print(bank_data.loc[0:2, ["age", "job", "marital"]])
+print(bank_data.loc[:10:2, ["age", "marital", "default", "housing", "contact", "month"]])
+

@@ -53,3 +53,17 @@ print(bank_data.loc[1, "job"])
 print(bank_data.loc[0:2, ["age", "job", "marital"]])
 print(bank_data.loc[:10:2, ["age", "marital", "default", "housing", "contact", "month"]])
 
+
+#3.3 特定の条件による抽出
+#query()を使う方法
+print(bank_data.query("age >= 35"))
+print(bank_data.query("marital == 'single'"))
+
+#query()を使わない方法
+print(bank_data[bank_data["age"]>=35])
+print(bank_data[bank_data["marital"] == "single"])
+
+
+#複数の条件を指定する方法
+print(bank_data.query("age >= 35 and marital == 'single'"))
+print(bank_data[(bank_data["age"] >= 35) & (bank_data["marital"] == "single")])

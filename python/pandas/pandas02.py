@@ -28,45 +28,23 @@ bank_data = pd.read_csv("bank.csv")
 print(type(bank_data))
 
 
-#3. データを参照・表示する
-#3.1 とりあえず表示する
-print(bank_data)
+#4. DataFrameとndarrayを相互変換する
 
-print("HEAD")
-print(bank_data.head(10))
+#4.1 DataFrameからndarrayに変換する
+nd_bank_data = bank_data.values
 
-print("TAIL")
-print(bank_data.tail(10))
+print(type(nd_bank_data))
+print(nd_bank_data)
 
-
-#3.2 スライス
-#位置の数値でスライスする
-print(bank_data.iloc[1, 1])    # 1番目のみ
-print(bank_data.iloc[0:3, 0:3])   # 0番目から4番目まで
-print(bank_data.iloc[:11:2, :11:2])    # 先頭から12番目まで（増分2で）
-
-print(bank_data.iloc[100:110, :10])
+nd_bank_columns = bank_data.columns.values
+print(type(nd_bank_columns))
+print(nd_bank_columns)
 
 
-#列名でスライスする
-print(bank_data.loc[1, "job"])
-print(bank_data.loc[0:2, ["age", "job", "marital"]])
-print(bank_data.loc[:10:2, ["age", "marital", "default", "housing", "contact", "month"]])
+#4.2 ndarrayからDataFrameに変換する
+print("4.2")
+re_bank_data = pd.DataFrame(data = nd_bank_data, columns = nd_bank_columns)
 
-
-#3.3 特定の条件による抽出
-#query()を使う方法
-print(bank_data.query("age >= 35"))
-print(bank_data.query("marital == 'single'"))
-
-#query()を使わない方法
-print(bank_data[bank_data["age"]>=35])
-print(bank_data[bank_data["marital"] == "single"])
-
-
-#複数の条件を指定する方法
-print(bank_data.query("age >= 35 and marital == 'single'"))
-print(bank_data[(bank_data["age"] >= 35) & (bank_data["marital"] == "single")])
-
-
+print(type(re_bank_data))
+print(re_bank_data.head())
 

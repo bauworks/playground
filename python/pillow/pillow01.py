@@ -48,3 +48,6 @@ plt.show()
 tokyo_tower_translated = tokyo_tower.rotate(0, translate=(100, 100))
 plt.imshow(tokyo_tower_translated)
 plt.show()
+
+
+plt.show()

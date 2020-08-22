@@ -1,11 +1,13 @@
 version: "3.8"
 services:
-  front:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  baufront:
+    image: node:12.18.3-alpine3.12
+    container_name: baufront
     volumes:
-      - ./front:/front
-    working_dir: /front
-    command: node
+      - ./project:/project
+    working_dir: /project
     tty: true
+    ports:
+      - 3000:3000
+    command: yarn start
+

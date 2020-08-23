@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
 const App: React.FC = () => {
+  const [count, setCount] = useState<number>(0);
+
+  const handleIncrement = useCallback(() => {
+    setCount((prev) => prev + 1);
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -10,6 +16,7 @@ const App: React.FC = () => {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
+
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -18,6 +25,8 @@ const App: React.FC = () => {
         >
           Learn React
         </a>
+        <div>{count}</div>
+        <button onClick={handleIncrement}>Add</button>
       </header>
     </div>
   );

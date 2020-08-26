@@ -9,6 +9,10 @@ const App: React.FC = () => {
     setCount((prev) => prev + 1);
   }, []);
 
+  const handleDecrement = useCallback(() => {
+    setCount((prev) => prev - 1);
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -27,6 +31,7 @@ const App: React.FC = () => {
         </a>
         <div>{count}</div>
         <button onClick={handleIncrement}>Add</button>
+        <button onClick={handleDecrement}>Sub</button>
       </header>
     </div>
   );

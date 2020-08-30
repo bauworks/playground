@@ -1,15 +1,15 @@
-import React, { useState, useCallback } from "react";
+import React, * as react from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
 const App: React.FC = () => {
-  const [count, setCount] = useState<number>(0);
+  const [count, setCount] = react.useState<number>(0);
 
-  const handleIncrement = useCallback(() => {
+  const handleIncrement = react.useCallback(() => {
     setCount((prev) => prev + 1);
   }, []);
 
-  const handleDecrement = useCallback(() => {
+  const handleDecrement = react.useCallback(() => {
     setCount((prev) => prev - 1);
   }, []);
 

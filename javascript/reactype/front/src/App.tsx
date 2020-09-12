@@ -1,6 +1,7 @@
 import React, * as react from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import SocketMessage from "./SocketMessage";
 
 const App: React.FC = () => {
   const [count, setCount] = react.useState<number>(0);
@@ -30,9 +31,10 @@ const App: React.FC = () => {
           Learn React
         </a>
         <div>{count}</div>
-        <button onClick={handleIncrement}>Add</button>
-        <button onClick={handleDecrement}>Sub</button>
+        <SocketMessage />
       </header>
+      <button onClick={handleIncrement}>Add</button>
+      <button onClick={handleDecrement}>Sub</button>
     </div>
   );
 };

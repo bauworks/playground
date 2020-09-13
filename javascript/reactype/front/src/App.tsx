@@ -31,10 +31,17 @@ const App: React.FC = () => {
           Learn React
         </a>
         <div>{count}</div>
-        <SocketMessage />
+        <button type="button" onClick={handleIncrement}>
+          Add
+        </button>
+        <button type="button" onClick={handleDecrement}>
+          Sub
+        </button>
+        <div>
+          Connection History
+          <SocketMessage />
+        </div>
       </header>
-      <button onClick={handleIncrement}>Add</button>
-      <button onClick={handleDecrement}>Sub</button>
     </div>
   );
 };

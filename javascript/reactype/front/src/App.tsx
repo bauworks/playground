@@ -38,7 +38,6 @@ const App: React.FC = () => {
           Sub
         </button>
         <div>
-          Connection History
           <SocketMessage />
         </div>
       </header>

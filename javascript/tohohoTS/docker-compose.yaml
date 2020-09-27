@@ -7,7 +7,3 @@ services:
       - ./tohoho:/tohoho
     working_dir: /tohoho
     tty: true
-    ports:
-      - 3100:3100
-
-    #command: yarn start

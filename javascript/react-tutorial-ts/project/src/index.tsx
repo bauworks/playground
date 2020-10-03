@@ -10,7 +10,7 @@ interface ISquareProps {
     value: string;
     onClick: () => void
 }
-function Square(props:ISquareProps) {
+const Square:React.FC<ISquareProps> = (props) => {
     return (
       <button className="square" onClick={props.onClick}>
         {props.value}
@@ -26,8 +26,8 @@ interface IBoardProps {
     squares: Array<string>;
     onClick: (i:number) => void
 }
-function Board(props:IBoardProps) {
-  function renderSquare(i:number) {
+const Board:React.FC<IBoardProps> = (props) => {
+  const renderSquare = (i:number) => {
     return (
       <Square
         value={props.squares[i]}
@@ -61,15 +61,15 @@ function Board(props:IBoardProps) {
 // ========================================
 // Game
 // ========================================
-function Game() {
+const Game:React.FC = () => {
   const [history, setHistory] = useState<Array<{squares: Array<string>}>>([{squares: Array(9).fill(null)}]);
   const [stepNumber, setStepNumber] = useState<number>(0);
   const [xIsNext, setXIsNext] = useState<boolean>(true);
 
 
-  function handleClick(i:number) {
+  const handleClick = (i:number) => {
     const _history = history.slice(0, stepNumber + 1);
-    const current = history[history.length - 1];
+    const current = _history[_history.length - 1];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
       return;
@@ -81,7 +81,7 @@ function Game() {
     setXIsNext(!xIsNext)
   }
 
-  function jumpTo(step:number) {
+  const jumpTo = (step:number) => {
     setStepNumber(step)
     setXIsNext(step % 2 === 0)
   }
@@ -113,7 +113,7 @@ function Game() {
       <div className="game-board">
         <Board
           squares={current.squares}
-          onClick={i => handleClick(i)}
+          onClick={(i:number) => handleClick(i)}
         />
       </div>
       <div className="game-info">

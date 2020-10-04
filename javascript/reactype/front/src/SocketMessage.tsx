@@ -1,80 +1,60 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
-interface ISocketMessageState {
-  ws: WebSocket;
-  endpoint: string;
-  sendmsg: string;
-  messages: Array<string>;
-}
+const SocketMessage:React.FC = () => {
 
-class SocketMessage extends React.Component {
-  state: ISocketMessageState;
+  const [ws, setWs] = useState<WebSocket>({} as WebSocket);
+  const [sendmsg, setSendmsg] = useState<string>("");
+  const [messages, setMessages] = useState<Array<string>>(["default"]);
+  const endpoint = "ws://localhost:9999";
+  
 
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      ws: {} as WebSocket,
-      endpoint: "ws://localhost:9999",
-      sendmsg: "",
-      messages: [],
-    };
-  }
+  useEffect(() => {
+    // componentDidMount
+    const ws = new WebSocket(endpoint);
+    setWs(ws);
 
-  componentDidMount() {
-    // initialize connection
-    const ws = new WebSocket(this.state.endpoint);
-
-    //ws.onopen = () =>{
-    //  //send any msg from Client if needed
-    //  ws.send(JSON.stringify("Hello, everyone!!"))
-    //}
-    // save whatever response from client
-    ws.onmessage = (evt) => {
-      this.setState({
-        messages: this.state.messages.concat(evt.data),
-      });
-    };
-
-    this.setState({ws: ws})
-
-  }
-
-  componentWillUnmount() {
-    if (this.state.ws !== undefined) {
-      this.state.ws.close()
+    return () => {
+      // componentWillUnmount
+      if (ws !== undefined) {
+        ws.close();
+      }
+      setMessages([]);
     }
-    this.setState({
-      endpoint: "",
-      messages: [],
-    });
+  }, []);
+
+
+  useEffect(() => {
+    ws.onmessage = (evt) => {
+      setMessages(messages.concat(evt.data));
+    }  
+  })
+
+
+  const handleMessage = (event:any) => {
+    setSendmsg(event.target.value);
   }
 
 
-  handleMessage(event:any) {
-    this.setState({sendmsg: event.target.value});
+  const handlePushButton = () => {
+       ws.send(JSON.stringify(sendmsg))
+       setSendmsg("")
   }
 
-  handlePushButton() {
-       this.state.ws.send(JSON.stringify(this.state.sendmsg))
-  }
-
-  render() {
-    return (
-      <div>
-        <input type="text" name="message" value={this.state.sendmsg} onChange={this.handleMessage.bind(this)} />
-        <button type="button" onClick={this.handlePushButton.bind(this)}>
-          Send
-        </button>
-        <div style={{textAlign: "left"}}>
-          {this.state.messages.map((items: React.ReactNode, index: number) => (
-            <li key="index">
-              {index} : {items}
-            </li>
-          ))}
-        </div>
+  return (
+    <div>
+      <input type="text" name="message" value={sendmsg} onChange={handleMessage} />
+      <button type="button" onClick={handlePushButton}>
+        Send
+      </button>
+      <div style={{textAlign: "left"}}>
+        {messages.map((items: React.ReactNode, index: number) => (
+          <li key="index">
+            {index} : {items}
+          </li>
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default SocketMessage;

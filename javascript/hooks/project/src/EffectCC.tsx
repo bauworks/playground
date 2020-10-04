@@ -1,5 +1,5 @@
 import React from  'react';
-
+import Button from '@material-ui/core/Button';
 
 interface IEffectCCState {
   count1:number;
@@ -36,8 +36,8 @@ class EffectCC extends React.Component<{},IEffectCCState> {
         <h1>クラスコンポーネント</h1>
         <p>[1] {this.state.count1} 回クリックしました。</p>
         <p>[2] {this.state.count2} 回クリックしました。</p>
-        <button onClick={this.handleClick1.bind(this)}>C1</button>
-        <button onClick={this.handleClick2.bind(this)}>C2</button>
+        <Button variant="contained" color="primary" onClick={this.handleClick1.bind(this)}>C1</Button>
+        <Button variant="contained" color="primary" onClick={this.handleClick2.bind(this)}>C2</Button>
       </div>
     );
   }

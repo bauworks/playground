@@ -50,14 +50,13 @@ class SocketMessage extends React.Component {
   }
 
 
-  handlePushButton() {
-       this.state.ws.send(JSON.stringify(this.state.sendmsg))
-  }
-
   handleMessage(event:any) {
     this.setState({sendmsg: event.target.value});
   }
 
+  handlePushButton() {
+       this.state.ws.send(JSON.stringify(this.state.sendmsg))
+  }
 
   render() {
     return (

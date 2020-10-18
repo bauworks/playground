@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+    react-apps:
+        container_name: react-apps
+        build:
+            context: .
+            dockerfile: dockerfile-reactapps
+        volumes:
+            - ./reactapps:/reactapps
+        tty: true
+        ports:
+            - 3000:3000
+        networks:
+            - baunet
+
+    ws-server:
+        container_name: ws-server
+        build:
+            context: .
+            dockerfile: dockerfile-wsserver
+        volumes: 
+            - ./wsserver:/wsserver
+        tty: true
+        ports:
+            - 9999:9999
+        networks:
+            - baunet
+        command: python ws_server.py
+
+networks:
+    baunet:
+        driver: bridge

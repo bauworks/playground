@@ -7,6 +7,7 @@ import Tutorial from './tutorial/index';
 import EffectCC from './hooks/EffectCC';
 import EffectFC from './hooks/EffectFC';
 import StateContext from './statecontext/App';
+import MaterialUI from './materialui/App';
 
 
 const Menu = () => {
@@ -33,6 +34,9 @@ const Menu = () => {
         <Link to="/statecontext">
           <button>Hooks State/Context</button>
         </Link>
+        <Link to="/materialui">
+          <button>Material UI</button>
+        </Link>
       </div>
     );
 };
@@ -50,6 +54,7 @@ const App = () => {
           <Route path="/hookscc"  component={EffectCC} />
           <Route path="/hooksfc"  component={EffectFC} />
           <Route path="/statecontext"  component={StateContext} />
+          <Route path="/materialui"  component={MaterialUI} />
         </div>
       </BrowserRouter>
     </div>

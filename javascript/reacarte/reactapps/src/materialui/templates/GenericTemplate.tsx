@@ -22,6 +22,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import WidgetsIcon from "@material-ui/icons/Widgets";
 
 const drawerWidth = 240;
 
@@ -225,6 +226,14 @@ const GenericTemplate: React.FC<GenericTemplateProps> = ({
                   <ShoppingCartIcon />
                 </ListItemIcon>
                 <ListItemText primary="商品ページ" />
+              </ListItem>
+            </Link>
+            <Link to="/materialui/comps" className={classes.link}>
+              <ListItem button>
+                <ListItemIcon>
+                  <WidgetsIcon />
+                </ListItemIcon>
+                <ListItemText primary="コンポーネント" />
               </ListItem>
             </Link>
           </List>

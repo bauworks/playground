@@ -140,7 +140,7 @@ const Copyright = () => {
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" to="/">
-        管理画面
+        This is Sample.
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -194,7 +194,7 @@ const GenericTemplate: React.FC<GenericTemplateProps> = ({
               noWrap
               className={classes.title}
             >
-              管理画面
+              Material-UI
             </Typography>
           </Toolbar>
         </AppBar>

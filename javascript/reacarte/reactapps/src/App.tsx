@@ -8,6 +8,7 @@ import EffectCC from './hooks/EffectCC';
 import EffectFC from './hooks/EffectFC';
 import StateContext from './statecontext/App';
 import MaterialUI from './materialui/App';
+import Yubarba from './yubarba/App';
 
 
 const Menu = () => {
@@ -37,6 +38,9 @@ const Menu = () => {
         <Link to="/materialui">
           <button>Material UI</button>
         </Link>
+        <Link to="/yubarba">
+          <button>Yubarba</button>
+        </Link>
       </div>
     );
 };
@@ -55,6 +59,7 @@ const App = () => {
           <Route path="/hooksfc"  component={EffectFC} />
           <Route path="/statecontext"  component={StateContext} />
           <Route path="/materialui"  component={MaterialUI} />
+          <Route path="/yubarba"  component={Yubarba} />
         </div>
       </BrowserRouter>
     </div>

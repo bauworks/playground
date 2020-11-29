@@ -25,7 +25,9 @@ type State = string;
 type Action = { type: string, value: string };
 const serifReducer = (state: State, action: Action) => {
   if (action.type === "signed" && action.value !== "") {
-    const newName = action.value.substr(Math.floor(Math.random() * action.value.length), 1);
+    // const newName = action.value.substr(Math.floor(Math.random() * action.value.length), 1);
+    const randamIndex = Math.round(Math.random() * (Array.from(action.value).length - 1));
+    const newName = Array.from(action.value)[randamIndex];    
     return "フン。" + action.value + "というのかい。\n贅沢な名だねぇ。\n今からお前の名前は" + newName + "だ。\nいいかい、" + newName + "だよ。\n分かったら返事をするんだ、" + newName + "!!";
   }
   return "サインしろって言っただろ!!";

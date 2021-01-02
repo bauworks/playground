@@ -1,0 +1,15 @@
+/Users/bauworks/GitHub/playground/csharp/helloworld/bin/Debug/net5.0/helloworld.deps.json
+/Users/bauworks/GitHub/playground/csharp/helloworld/bin/Debug/net5.0/helloworld.runtimeconfig.json
+/Users/bauworks/GitHub/playground/csharp/helloworld/bin/Debug/net5.0/helloworld.runtimeconfig.dev.json
+/Users/bauworks/GitHub/playground/csharp/helloworld/bin/Debug/net5.0/helloworld.dll
+/Users/bauworks/GitHub/playground/csharp/helloworld/bin/Debug/net5.0/ref/helloworld.dll
+/Users/bauworks/GitHub/playground/csharp/helloworld/bin/Debug/net5.0/helloworld.pdb
+/Users/bauworks/GitHub/playground/csharp/helloworld/obj/Debug/net5.0/helloworld.csprojAssemblyReference.cache
+/Users/bauworks/GitHub/playground/csharp/helloworld/obj/Debug/net5.0/helloworld.GeneratedMSBuildEditorConfig.editorconfig
+/Users/bauworks/GitHub/playground/csharp/helloworld/obj/Debug/net5.0/helloworld.AssemblyInfoInputs.cache
+/Users/bauworks/GitHub/playground/csharp/helloworld/obj/Debug/net5.0/helloworld.AssemblyInfo.cs
+/Users/bauworks/GitHub/playground/csharp/helloworld/obj/Debug/net5.0/helloworld.csproj.CoreCompileInputs.cache
+/Users/bauworks/GitHub/playground/csharp/helloworld/obj/Debug/net5.0/helloworld.dll
+/Users/bauworks/GitHub/playground/csharp/helloworld/obj/Debug/net5.0/ref/helloworld.dll
+/Users/bauworks/GitHub/playground/csharp/helloworld/obj/Debug/net5.0/helloworld.pdb
+/Users/bauworks/GitHub/playground/csharp/helloworld/obj/Debug/net5.0/helloworld.genruntimeconfig.cache

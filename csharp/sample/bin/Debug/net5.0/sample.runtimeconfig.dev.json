@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/bauworks/.dotnet/store/|arch|/|tfm|",
+      "/Users/bauworks/.nuget/packages"
+    ]
+  }
+}

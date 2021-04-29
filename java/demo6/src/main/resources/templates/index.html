@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="jp" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot入門</title>
+</head>
+<body>
+    <h1>Spring Boot Home</h1>
+    <h3 th:text="${tag}"></h3>
+    <form method="post" action="/test/input">
+        <input name="testInput" type="text">
+        <button type="submit">送信</button>
+    </form>
+    <p th:text="${testInput}"></p>
+</body>
+</html>

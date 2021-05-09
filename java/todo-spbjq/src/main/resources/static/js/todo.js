@@ -13,9 +13,9 @@ $(function(){
         const is_done = todo.find('input[name="done_flg"]').prop("checked");
         let done_flg;
         if(is_done == true) {
-        done_flg = 1;
+            done_flg = 1;
         }else{
-        done_flg = 0;
+            done_flg = 0;
         }
 
         const params = {
@@ -44,8 +44,6 @@ $(function(){
 
         $("#done_count").text(doneCount);
         }
-
-
     })
 
     //完了済みタスク表示/非表示切り替え
@@ -62,7 +60,15 @@ $(function(){
 
     //追加処理
     $('#add').click(function() {
-        const params = $('#add_form').serializeArray();
+        const todo = $('#add_div');
+        const title = todo.find('input[name="title"]').val();
+        const time_limit = todo.find('input[name="time_limit"]').val();
+        const params = {
+            title : title,
+            time_limit : time_limit,
+            done_flg : 0
+        }
+
         $.post("/add",params).done(function(json){
             const clone = $('#todes tr:first').clone(true);
             clone.find('input[name="id"]').val(json.id);

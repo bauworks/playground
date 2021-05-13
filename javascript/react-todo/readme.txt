@@ -2,9 +2,13 @@
  PowerShell推奨
 ===========================
 
-■以下のコマンドでcreate-react-appを実行する。
+■ reactappディレクトリを削除または退避
+　（今のreactappを再利用なら退避して後で戻す）
+mv reactapp reactapp.tmp
 
-docker-compose run --rm node sh -c "npm install -g create-react-app && create-react-app reactapp --typescript"
+
+■以下のコマンドでcreate-react-appを実行する。
+docker-compose run --rm reactapp sh -c "npm install -g create-react-app && create-react-app reactapp --typescript"
 
 
 # Success! Created reactapp at /usr/src/app/reactapp
@@ -31,7 +35,6 @@ docker-compose run --rm node sh -c "npm install -g create-react-app && create-re
 # Happy hacking!
 
 ■Docker Desktop を立ち上げて、react-sample が見当たらなければもう一度upする。
-
 docker-compose up -d
 
 
@@ -45,4 +48,12 @@ http://loalhost:3000/
 
 ■好きなだけソースコードを修正しよう。
   react-todo\reactapp\src
+
+
+■元々あったreactappを再利用するならnode_modulesを退避してあったreactappに移して、ディレクトリ名を元に戻す。
+docker-compose stop
+mv reactapp/node_modules reactapp.tmp/.
+rm -rf reactapp
+mv reactapp.tmp reactapp
+docker-compose up -d
 

@@ -55,4 +55,48 @@ public class TodoController {
         todoMapper.delete();
     }
 
+
+    //----------------------------------------------
+    // API
+    //----------------------------------------------    
+    @RequestMapping(value="/api/selectall")
+    @CrossOrigin(origins = "*")
+    @ResponseBody
+    public List<Todo> apiSelectall(Model model) {
+        List<Todo> list = todoMapper.selectAll();
+        return list;
+    }
+
+    
+    @RequestMapping(value="/api/add")
+    @CrossOrigin(origins = "*")
+    @ResponseBody
+    public Todo apiAdd(@RequestBody Todo todo) {
+        todoMapper.add(todo);
+        return todo;
+    }
+
+    
+    @RequestMapping(value="/api/update")
+    @CrossOrigin(origins = "*")
+    @ResponseBody
+    public String apiUpdate(@RequestBody Todo todo) {
+        String succes = "false";
+        try {
+            todoMapper.update(todo);
+            succes = "true";
+        } catch(Exception e) {
+            succes = "false";
+        }
+        return succes;        
+    }
+
+    
+    @RequestMapping(value="/api/delete")
+    @CrossOrigin(origins = "*")
+    @ResponseBody
+    public void apiDelete() {
+        todoMapper.delete();
+    }
+	
 }

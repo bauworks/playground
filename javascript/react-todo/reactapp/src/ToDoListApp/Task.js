@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import styled from 'styled-components';
 
 //***********************************
 // タスクカラムの表示
@@ -47,16 +47,20 @@ const Task = (props) => {
 
 
     // スタイル設定
+    const Input = styled.input`
+    margin: 0 8px 0 0;
+    `
+
     const titleStyle = (checked) => ({
         textDecorationLine: checked ? "line-through" : "none"
     });
 
     return(
       <td>
-          <input type="checkbox"name="done_flg" checked={checked} onChange={changeChecked}/>
-          <input type="hidden" name="id" value={id} />
-          <input type="text" name="title" value={title} onChange={changeTitle} style={titleStyle(checked)} />
-          <input type={checked ? "hidden" : "date"} name="time_limit" value={time_limit} onChange={changeTime_limit}/>
+          <Input type="checkbox"name="done_flg" checked={checked} onChange={changeChecked}/>
+          <Input type="hidden" name="id" value={id} />
+          <Input type="text" name="title" value={title} onChange={changeTitle} style={titleStyle(checked)} />
+          <Input type={checked ? "hidden" : "date"} name="time_limit" value={time_limit} onChange={changeTime_limit}/>
       </td>
     );
   

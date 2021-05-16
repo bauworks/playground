@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import styled from 'styled-components';
 import TaskInput from './TaskInput';
 import TaskTable from './TaskTable';
+import { Button } from './components/Button';
+import { TaskTableContainer } from './components/TaskTableContainer';
 //import axios from 'axios';
+
 
 //***********************************
 // ToDoListコンポーネント
@@ -91,19 +95,26 @@ const ToDoListApp = () => {
         });
     }
   
-
+    // スタイル定義(カスタム継承＆引数の例)
+    const ButtonDel = styled(Button)`
+    margin: ${props => props.mgtop} 0 0 0;
+    `
+  
     return(
         <div>
             <h1>ToDoList</h1>
-            <h3>■ 新しいタスクを追加</h3>
-            <TaskInput addFunc={addTask} />
+            <TaskTableContainer title="新しいタスクを追加">
+                <TaskInput addFunc={addTask} />
+            </TaskTableContainer>
 
-            <h3>■ マイタスク</h3>
-            <TaskTable taskAll={taskAll} done_flg="0" modFunc={modTask} />
+            <TaskTableContainer title="マイタスク">
+                <TaskTable taskAll={taskAll} done_flg="0" modFunc={modTask} />
+            </TaskTableContainer>
 
-            <h3>■ 完了済み</h3>
-            <TaskTable taskAll={taskAll} done_flg="1" modFunc={modTask} />
-            <button type="button" onClick={removeFinishedTask}>完了済みを削除</button>
+            <TaskTableContainer title="完了済み">
+                <TaskTable taskAll={taskAll} done_flg="1" modFunc={modTask} />
+                <ButtonDel type="button" onClick={removeFinishedTask} mgtop="10px">完了済みを削除</ButtonDel>
+            </TaskTableContainer>
 
         </div>
     );

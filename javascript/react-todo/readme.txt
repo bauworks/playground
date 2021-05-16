@@ -6,6 +6,8 @@
 　（今のreactappを再利用なら退避して後で戻す）
 mv reactapp reactapp.tmp
 
+※create-react-app するのではなく、yarn install するなら退避して戻す必要なさそう。
+
 
 ■以下のコマンドでcreate-react-appを実行する。
 docker-compose run --rm reactapp sh -c "npm install -g create-react-app && create-react-app reactapp --typescript"

@@ -4,7 +4,6 @@ import TaskInput from './TaskInput';
 import TaskTable from './TaskTable';
 import { Button } from './components/Button';
 import { TaskTableContainer } from './components/TaskTableContainer';
-//import axios from 'axios';
 
 //***********************************
 // ToDoList APPコンポーネント
@@ -14,6 +13,8 @@ const ToDoListApp = () => {
     //-------------------------------
     // プロパティ
     //-------------------------------
+    const [loading, setLoading] = useState(true);
+
     // 全てのタスク    
     const [taskAll, setTaskAll] = useState([]);
 
@@ -84,19 +85,20 @@ const ToDoListApp = () => {
     // 初回実行
     /*** 初期値をDBから取得 ***/
     useEffect(() => {
-        fetch('http://localhost:8080/api/selectall')
-        .then(res => res.json()) 
-        .then(json => {
-            setTaskAll(json)
-        });
-        // axiosを使う場合（npm install axios が必要）
-        // const fetchData = async () => {
-        //     const result = await axios(
-        //         'http://localhost:8080/api/selectall',
-        //     );
-        //     setTaskAll(result.data);
-        // };
-        // fetchData();
+
+        const fetchData = async () => {
+            const URL = 'http://localhost:8080/api/selectall';
+            const res = await fetch(URL)
+            const data = await res.json();
+            // ↓一行で書くとこうなる
+            // await (await fetch(URL)).json();
+            setTaskAll(data);
+        }
+
+        setTimeout(() => {
+            fetchData();
+            setLoading(false);
+        }, 1000);
     }, []);
 
 
@@ -112,11 +114,11 @@ const ToDoListApp = () => {
             </TaskTableContainer>
 
             <TaskTableContainer title="マイタスク">
-                <TaskTable taskAll={taskAll} done_flg="0" modFunc={modTask} />
+                <TaskTable taskAll={taskAll} done_flg="0" modFunc={modTask} loading={loading}/>
             </TaskTableContainer>
 
             <TaskTableContainer title="完了済み">
-                <TaskTable taskAll={taskAll} done_flg="1" modFunc={modTask} />
+                <TaskTable taskAll={taskAll} done_flg="1" modFunc={modTask} loading={loading} />
                 <ButtonDel type="button" onClick={removeFinishedTask} mgtop="10px">完了済みを削除</ButtonDel>
             </TaskTableContainer>
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import Task from './Task';
+import styled from 'styled-components';
 
 //***********************************
 // タスクテーブルコンポーネント
@@ -18,18 +19,41 @@ const TaskTable = (props) => {
       </tr>
     );
 
+
     //-------------------------------
     // JSX
     //-------------------------------
-    return(
-        <table border='0' cellSpacing='0'>
+    // ロード中
+    const Loading = (
+      <LoadDiv>ロード中...</LoadDiv>
+    );
+
+    // タスクテーブル
+    const LoadedTable = (
+      <table border='0' cellSpacing='0'>
         <thead>
         </thead>
         <tbody>
             {taskRows}
         </tbody> 
-        </table>    
+      </table>
     );
+
+    return props.loading ? Loading : LoadedTable;
+    
 }
 
 export default TaskTable
+
+
+//***********************************
+// スタイル設定（継承）
+//***********************************
+const LoadDiv = styled.div`
+  /*
+   * height: 30px;
+   * padding: 10px;
+   */
+  color: ${() => "#666"};
+  background-color: ${() => "#FFF"};
+`

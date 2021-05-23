@@ -92,7 +92,7 @@ const Task = (props) => {
                 onChange={(e) => {setTime_limit(e.target.value);setTime_limit_edited(true)}} style={timeLimitStyle()}/>
 
             {/*更新ボタン*/}
-            <ButtonMod type="button" onClick={() => changeTask()} isChecked="true" >更新</ButtonMod>
+            <ButtonMod type="button" onClick={() => changeTask()} isChecked={checked} >更新</ButtonMod>
         </td>
     );
   
@@ -103,13 +103,13 @@ export default Task
 
 //***********************************
 // スタイル設定（継承）
+// （この形式で定義する場合は関数外でないとワーニングが出る）
 //***********************************
 // (入力のたびにフォーカスが外れるのを回避するためにクラス外に移動)
 // inputタグ全般
 const Input = styled.input`
   margin: 0 8px 0 0;
 `
-// （この形式で定義する場合は関数外でないとワーニングが出る）
 // 更新ボタン
 const ButtonMod = styled(Button)`
     display: ${props => props.isChecked ? "none" : ""};

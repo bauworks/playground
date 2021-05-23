@@ -1,20 +1,29 @@
 import styled from "styled-components";
 
-const P_Container = styled.div`
-  padding: 0 0 20px 0;
-`
-const C_Container = styled.div`
-  padding: 0 0 0 20px;
-`
 
+//***********************************
+// タスクテーブルのレイアウトコンテナ コンポーネント
+//***********************************
 export const TaskTableContainer = ({ children, title }) => {
+  //-------------------------------
+  // JSX
+  //-------------------------------  
   return (
-    <P_Container>
+    <Container1>
       <h3>■ { title }</h3>
-      <C_Container>
+      <Container2>
         { children }
-      </C_Container>
-    </P_Container>
+      </Container2>
+    </Container1>
   )
 }
 
+//***********************************
+// スタイル設定（継承）
+//***********************************
+const Container1 = styled.div`
+  padding: 0 0 20px 0;
+`
+const Container2 = styled.div`
+  padding: 0 0 0 20px;
+`

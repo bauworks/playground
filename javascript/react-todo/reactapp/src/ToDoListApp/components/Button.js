@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 // yarn add styled-components でインストールする
 
+//***********************************
+// ボタンコンポーネント
+//***********************************
 export const Button = styled.button`
   border: none;
   border-radius: 3px;

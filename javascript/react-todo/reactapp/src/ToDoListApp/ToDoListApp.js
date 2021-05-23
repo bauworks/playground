@@ -6,33 +6,16 @@ import { Button } from './components/Button';
 import { TaskTableContainer } from './components/TaskTableContainer';
 //import axios from 'axios';
 
-
 //***********************************
-// ToDoListコンポーネント
+// ToDoList APPコンポーネント
 //***********************************
 const ToDoListApp = () => {
 
-    //-------------------------
-    // 全てのタスク
-    //-------------------------
+    //-------------------------------
+    // プロパティ
+    //-------------------------------
+    // 全てのタスク    
     const [taskAll, setTaskAll] = useState([]);
-
-    /*** 初期値をDBから取得 ***/
-    useEffect(() => {
-        fetch('http://localhost:8080/api/selectall')
-        .then(res => res.json()) 
-        .then(json => {
-            setTaskAll(json)
-        });
-        // axiosを使う場合（npm install axios が必要）
-        // const fetchData = async () => {
-        //     const result = await axios(
-        //         'http://localhost:8080/api/selectall',
-        //     );
-        //     setTaskAll(result.data);
-        // };
-        // fetchData();
-    }, []);
 
     /*** タスクの追加 ***/
     const addTask = (task) => {
@@ -71,7 +54,7 @@ const ToDoListApp = () => {
         .then(json => {
             // IDが一致するタスクを差し替え
             const modified = taskAll.map((orgTask) => {
-                if (task.id == orgTask.id) {
+                if (task.id === orgTask.id) {
                     return task;
                 } else {
                     return orgTask;
@@ -95,11 +78,32 @@ const ToDoListApp = () => {
         });
     }
   
-    // スタイル定義(カスタム継承＆引数の例)
-    const ButtonDel = styled(Button)`
-    margin: ${props => props.mgtop} 0 0 0;
-    `
-  
+    //-------------------------------
+    // 副作用
+    //-------------------------------
+    // 初回実行
+    /*** 初期値をDBから取得 ***/
+    useEffect(() => {
+        fetch('http://localhost:8080/api/selectall')
+        .then(res => res.json()) 
+        .then(json => {
+            setTaskAll(json)
+        });
+        // axiosを使う場合（npm install axios が必要）
+        // const fetchData = async () => {
+        //     const result = await axios(
+        //         'http://localhost:8080/api/selectall',
+        //     );
+        //     setTaskAll(result.data);
+        // };
+        // fetchData();
+    }, []);
+
+
+
+    //-------------------------------
+    // JSX
+    //-------------------------------
     return(
         <div>
             <h1>ToDoList</h1>
@@ -121,3 +125,12 @@ const ToDoListApp = () => {
 }
 
 export default ToDoListApp
+
+
+//***********************************
+// スタイル設定
+//***********************************
+// スタイル定義(カスタム継承＆引数の例)
+const ButtonDel = styled(Button)`
+    margin: ${props => props.mgtop} 0 0 0;
+`

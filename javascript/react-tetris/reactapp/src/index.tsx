@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {TetrisApp} from './TetrisApp/TetrisApp';
+import {TetrisApp} from './Organisms/TetrisApp';
 
 ReactDOM.render(
   <React.StrictMode>
-    <TetrisApp />
+    <TetrisApp/> 
   </React.StrictMode>,
   document.getElementById('root')
 );

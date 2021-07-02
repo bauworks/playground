@@ -21,6 +21,7 @@ public class Example1 {
             Map<String, Integer> map = new HashMap<>();
             // System.out.println( map.computeIfAbsent("cherry", s -> s.length()) );
             System.out.println( map.computeIfAbsent("cherry", String::length) );
+            System.out.println( map.computeIfAbsent("cherry", (str)->str.length()) );
         }
 
         System.out.println("\n***** List.replaceAll() *****");
@@ -29,7 +30,7 @@ public class Example1 {
             list.add("Apple");
             list.add("Banana");
             list.add("Cherry");
-            
+
             System.out.println("toUpperCase()");
             list.replaceAll( t -> t.toUpperCase() );
             list.forEach(System.out::println);

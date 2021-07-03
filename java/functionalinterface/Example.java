@@ -13,7 +13,7 @@ public class Example{
         IHobby hb = (String hobby) -> {
             return "my hobby : " + hobby;
         };
-        
+
         // 実装した関数を呼び出す
         System.out.println(hb.getHobby("cycling"));
 
@@ -28,7 +28,7 @@ public class Example{
         // デフォルトメソッドを使って再起的に呼び出した例
         Piyo piyoObj = new Piyo();
         piyoObj.piyo();
-    
+  
 
         System.out.println("---------------------------------");
         // インターフェースを継承して関数インターフェースの例

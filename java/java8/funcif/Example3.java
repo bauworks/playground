@@ -1,4 +1,6 @@
+package java8.funcif;
 import java.io.PrintStream;
+
 
 @FunctionalInterface
 interface IPiyoFunc<T> {
@@ -15,8 +17,14 @@ interface IPiyoFunc<T> {
     }
 }
 
-public class Piyo{
-    public void piyo() {
+
+/*
+ * デフォルトメソッドを使って再起的に呼び出した例
+ */
+public class Example3 {
+
+	public static void main(String[] args) {
+		
         IPiyoFunc<PrintStream> piyo1 = stream -> stream.print("ABC ");
         IPiyoFunc<PrintStream> piyo2 = stream -> stream.println("DEF");
         IPiyoFunc<PrintStream> piyo3 = stream -> stream.println("GHI");
@@ -32,6 +40,7 @@ public class Piyo{
             )
         ).accept(System.out);
 
+        
         // 以下と同じ（piyopiyo の accept にネストした andThen() が入る）
         // IPiyoFunc<PrintStream> piyopiyo = piyo1.andThen(
         //     piyo2.andThen(
@@ -39,5 +48,7 @@ public class Piyo{
         //     )
         // );
         // piyopiyo.accept(System.out);
-    }
+
+	}
+
 }

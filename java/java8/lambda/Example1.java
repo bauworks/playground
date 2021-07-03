@@ -1,11 +1,16 @@
+package java8.lambda;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
-
 public class Example1 {
+
+	
+	/*
+	 * ラムダ式コレクション
+	 */
     public static void main(String[] args){
 
         System.out.println("\n***** forEach() *****");
@@ -18,10 +23,11 @@ public class Example1 {
 
         System.out.println("\n***** Map.computeIfAbsent() *****");
         {
+        	// computeIfAbsent
+        	// 指定したkeyの要素が存在しない、または値がNULLの場合に指定したkeyと任意の処理で算出した値をputする。
             Map<String, Integer> map = new HashMap<>();
-            // System.out.println( map.computeIfAbsent("cherry", s -> s.length()) );
-            System.out.println( map.computeIfAbsent("cherry", String::length) );
             System.out.println( map.computeIfAbsent("cherry", (str)->str.length()) );
+            System.out.println( map.computeIfAbsent("cherry", String::length) );
         }
 
         System.out.println("\n***** List.replaceAll() *****");
@@ -34,6 +40,7 @@ public class Example1 {
             System.out.println("toUpperCase()");
             list.replaceAll( t -> t.toUpperCase() );
             list.forEach(System.out::println);
+            
             System.out.println("toLowerCase()");
             list.replaceAll(String::toLowerCase);
             list.forEach(System.out::println);
@@ -66,9 +73,7 @@ public class Example1 {
                                                     UnaryOperator.identity()
                                             ));
 
-            fruitIdMap.forEach( (key, map) -> {System.out.println(map.name);} );
+            fruitIdMap.forEach( (key, map) -> {System.out.println(key + " : " + map.name);} );
         }
-
-
     }
 }

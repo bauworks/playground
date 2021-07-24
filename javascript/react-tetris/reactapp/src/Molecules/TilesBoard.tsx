@@ -315,7 +315,7 @@ export const TilesBoard: React.FC<Props> = (props: Props) => {
 
           // １列揃った行があればその列を削除する
           newTilesInfo = newTilesInfo.filter((rowInfo) => {
-            return !(rowInfo.length === rowInfo.filter((info)=>info !== 0).length)
+            return !(rowInfo.every((info)=>info !== 0))
           });
 
           // 削除されて不足した列を挿入
@@ -359,7 +359,7 @@ export const TilesBoard: React.FC<Props> = (props: Props) => {
     const [timerId, setTimerId] = useState<number>(0);
 
     useEffect(() => {
-      const timerId = window.setInterval(downBlock, 1000);
+      const timerId = window.setInterval(downBlock, 500);
       setTimerId(timerId);
       return () => clearInterval(timerId);
     // eslint-disable-next-line react-hooks/exhaustive-deps

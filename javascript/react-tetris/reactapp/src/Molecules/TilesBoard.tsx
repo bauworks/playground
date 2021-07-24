@@ -105,20 +105,31 @@ const checkPutBlock = (
   props: putBlockProps,
   allTiles:　number[][]) :boolean => {
 
-    const x: number = props.x;
-    const y: number = props.y;
-    const block: number = props.block;
-    const rotate: number = props.rotate;
+    const x = props.x;
+    const y = props.y;
+    const block = props.block;
+    const rotate = props.rotate;
   
     if (
+      // ボードを上下にはみ出すタイルがあるか？（配列の上下限に達しないか？）
       y + blockPatterns[block][rotate][0][1] > allTiles.length -1 ||
       y + blockPatterns[block][rotate][1][1] > allTiles.length -1 ||
       y + blockPatterns[block][rotate][2][1] > allTiles.length -1 ||
       y + blockPatterns[block][rotate][3][1] > allTiles.length -1 ||
+      y + blockPatterns[block][rotate][0][1] < 0 ||
+      y + blockPatterns[block][rotate][1][1] < 0 ||
+      y + blockPatterns[block][rotate][2][1] < 0 ||
+      y + blockPatterns[block][rotate][3][1] < 0 ||
+      // ボードを左右にはみ出すタイルがあるか？（配列の上下限に達しないか？）
       x + blockPatterns[block][rotate][0][0] > allTiles[0].length -1 ||
       x + blockPatterns[block][rotate][1][0] > allTiles[0].length -1 ||
       x + blockPatterns[block][rotate][2][0] > allTiles[0].length -1 ||
       x + blockPatterns[block][rotate][3][0] > allTiles[0].length -1 ||
+      x + blockPatterns[block][rotate][0][0] < 0 ||
+      x + blockPatterns[block][rotate][1][0] < 0 ||
+      x + blockPatterns[block][rotate][2][0] < 0 ||
+      x + blockPatterns[block][rotate][3][0] < 0 ||
+      // ブロックのセット予定の位置にすでに色付き(≠0)のタイルがあるか？
       allTiles[ y + blockPatterns[block][rotate][0][1] ][ x + blockPatterns[block][rotate][0][0] ] !== 0 ||
       allTiles[ y + blockPatterns[block][rotate][1][1] ][ x + blockPatterns[block][rotate][1][0] ] !== 0 ||
       allTiles[ y + blockPatterns[block][rotate][2][1] ][ x + blockPatterns[block][rotate][2][0] ] !== 0 ||
@@ -191,14 +202,15 @@ export const TilesBoard: React.FC<Props> = (props: Props) => {
     /*
      * 全タイル情報
      */
-    const initialTilesInfo = () => {
+    const initialTilesInfo = useCallback((props) => {
       const infos: number[][] = new Array<number[]>(props.height);
       for (let i=0; i < infos.length; i++){
         infos[i] = new Array<number>(props.width).fill(0);
       }
       return infos;
-    } 
-    const [tilesInfo, setTilesInfo] = useState<number[][]>(initialTilesInfo);
+    }, []);
+
+    const [tilesInfo, setTilesInfo] = useState<number[][]>(initialTilesInfo(props));
 
 
     /*
@@ -239,7 +251,7 @@ export const TilesBoard: React.FC<Props> = (props: Props) => {
     //-------------------------------
     // タイルを並べる(行)
     //-------------------------------
-    const tilesAll = tilesInfo.map((rowInfo, index) => 
+    const tilesAll = tilesInfo.map((rowInfo: number[], index: number) => 
       <div key={index}>
         {tilesRow(rowInfo)}
       </div>
@@ -249,28 +261,28 @@ export const TilesBoard: React.FC<Props> = (props: Props) => {
     //-------------------------------
     // イベント処理：キー入力
     //-------------------------------
-    const keyDown = useCallback((event) => {
+    const keyDown = useCallback((event: { keyCode: number; }) => {
       // console.log("Key Pressed : " + event.keyCode );
       if (event.keyCode === 32) {         // Space
-        setNextRotate(angle => angle === 3 ? 0 : angle + 1);
+        setNextRotate((angle: number) => angle === 3 ? 0 : angle + 1);
       }
       else if (event.keyCode === 90) {    // z
-        setNextRotate(angle => angle === 3 ? 0 : angle + 1);
+        setNextRotate((angle: number) => angle === 3 ? 0 : angle + 1);
       }
       else if (event.keyCode === 88) {    // x
-        setNextRotate(angle => angle === 0 ? 3 : angle - 1);
+        setNextRotate((angle: number) => angle === 0 ? 3 : angle - 1);
       }
       else if (event.keyCode === 37) {    // Left
-        setNextPos(xy => [xy[0]-1, xy[1]]);
+        setNextPos((xy: number[]) => [xy[0]-1, xy[1]]);
       }
       else if (event.keyCode === 38) {    // Up
-        setNextPos(xy => [xy[0], xy[1]-1]);
+        setNextPos((xy: number[]) => [xy[0], xy[1]-1]);
       }
       else if (event.keyCode === 39) {    // Right
-        setNextPos(xy => [xy[0]+1, xy[1]]);
+        setNextPos((xy: number[]) => [xy[0]+1, xy[1]]);
       }
       else if (event.keyCode === 40) {    // Down
-        setNextPos(xy => [xy[0], xy[1]+1]);
+        setNextPos((xy: number[]) => [xy[0], xy[1]+1]);
       }
     }, []);
 
@@ -284,7 +296,7 @@ export const TilesBoard: React.FC<Props> = (props: Props) => {
     //-------------------------------
     // ブロック降下
     const downBlock = () => {
-      setNextPos(xy => [xy[0], xy[1]+1]);
+      setNextPos((xy: number[]) => [xy[0], xy[1]+1]);
     };
 
 
@@ -296,7 +308,7 @@ export const TilesBoard: React.FC<Props> = (props: Props) => {
       let newTilesInfo = tilesInfo;
 
       // Props編集
-      const props :putBlockProps = {
+      const nextProps :putBlockProps = {
         x: nextPos[0],
         y: nextPos[1],
         block: bfProps.block,
@@ -304,23 +316,24 @@ export const TilesBoard: React.FC<Props> = (props: Props) => {
       }
     
       // ブロックを次の位置にセットする
-      const ret = putBlock(props, bfProps, newTilesInfo);
+      const ret = putBlock(nextProps, bfProps, newTilesInfo);
 
       if (ret === true) {
         // ブロックの移動が成功の場合、Propsを前回値として保存
-        setBfProps(props);
+        setBfProps(nextProps);
       } else {
-        // 下移動で失敗した場合は、次のブロックを出現させる
-        if (props.y > bfProps.y) {
+        // 下移動で失敗した場合は、次のブロックを出現させる。置けない場合はゲームオーバー
+        if (nextProps.y > bfProps.y) {
 
           // １列揃った行があればその列を削除する
-          newTilesInfo = newTilesInfo.filter((rowInfo) => {
+          newTilesInfo = newTilesInfo.filter((rowInfo: number[]) => {
             return !(rowInfo.every((info)=>info !== 0))
           });
 
           // 削除されて不足した列を挿入
           for (let rows = newTilesInfo.length; rows < tilesInfo.length; rows++) {
-            const infos: number[] = new Array<number>(tilesInfo[0].length).fill(0);
+            // const infos: number[] = new Array<number>(tilesInfo[0].length).fill(0);
+            const infos: number[] = new Array<number>(props.width).fill(0);
             newTilesInfo.unshift(infos);
           }
 

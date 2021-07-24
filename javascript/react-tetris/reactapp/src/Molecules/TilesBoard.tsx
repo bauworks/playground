@@ -325,7 +325,7 @@ export const TilesBoard: React.FC<Props> = (props: Props) => {
         // 下移動で失敗した場合は、次のブロックを出現させる。置けない場合はゲームオーバー
         if (nextProps.y > bfProps.y) {
 
-          // １列揃った行があればその列を削除する
+          // １列揃ったラインがあればそのラインを削除する
           newTilesInfo = newTilesInfo.filter((rowInfo: number[]) => {
             return !(rowInfo.every((info)=>info !== 0))
           });

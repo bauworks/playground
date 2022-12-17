@@ -1,10 +1,7 @@
 #各種ライブラリを宣言
 import sys
-import investpy
 import pandas as pd
 import pandas_datareader as pdr
-import datetime
-from datetime import date
 import time
 import sqlite3
 

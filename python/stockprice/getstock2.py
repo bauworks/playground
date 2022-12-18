@@ -1,9 +1,13 @@
 #各種ライブラリを宣言
 import sys
 import pandas as pd
-import pandas_datareader as pdr
+from pandas_datareader import data as pdr
+import datetime
 import time
 import sqlite3
+
+import yfinance as yfin
+yfin.pdr_override()
 
 dbname = 'STOCK_JP.db'
 
@@ -17,7 +21,8 @@ def get_stockprice(code, from_date, to_date):
         # スリープ
         time.sleep(0.5)
  
-        df = pdr.data.DataReader(str(code) + ".T", data_source='yahoo', start=from_date, end=to_date)
+        #df = pdr.data.DataReader(str(code) + ".T", data_source='yahoo', start=from_date, end=to_date)
+        df = pdr.get_data_yahoo(str(code) + ".T", start=from_date, end=to_date)
         dfs.append(df)
 
         if dfs == None:
@@ -122,20 +127,25 @@ def register_stockprice(code_list, fromDate, toDate):
 ##############################################
 ### MAIN START ###############################
 ##############################################
-# 引数のチェックと取得
+# 引数のチェックと取得(引数２つ以下はエラー)
 if(len(sys.argv) <= 2+1):
     print(f'Usage: {sys.argv[0]} From-code To-code from-Date(YYYY-MM-DD) [to-Date(YYYY-MM-DD)]')
     sys.exit()
 
 fromCode = sys.argv[1]
 toCode = sys.argv[2]
-fromDate = sys.argv[3]
 
-# 引数が４つあるときは日付を範囲指定で検索
-if(len(sys.argv) == 4+1):
-    toDate = sys.argv[4]
+# 引数が３つの場合はargv[3]の翌日までで範囲指定
+if(len(sys.argv) == 3+1):
+    fromDate = sys.argv[3]
+    dtFrom = datetime.datetime.strptime(fromDate, '%Y-%m-%d')   #日付型に変換
+    dtTo = dtFrom + datetime.timedelta(days=1)  #翌日を取得
+    toDate = dtTo.strftime('%Y-%m-%d')
+# 引数が４つ以上の場合の範囲指定（argv[3]-argv[4]）
 else:
-    toDate = sys.argv[3]
+    fromDate = sys.argv[3]
+    toDate = sys.argv[4]
+
 
 print(f'Date: [ {fromDate} ]-[ {toDate} ]')
 print(f'Code: [ {fromCode} ]-[ {toCode} ]')

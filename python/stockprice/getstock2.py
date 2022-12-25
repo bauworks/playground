@@ -5,6 +5,7 @@ from pandas_datareader import data as pdr
 import datetime
 import time
 import sqlite3
+import fcntl
 
 import yfinance as yfin
 yfin.pdr_override()
@@ -32,6 +33,27 @@ def get_stockprice(code, from_date, to_date):
         # エラーが出たらとばす
         print(str(code) + " : Data read Error.")
         return None
+
+    return dfs
+
+#---------------------------------------
+# ロックをかけてから株価を取得
+#---------------------------------------
+def get_stockprice_lock(code, from_date, to_date):
+    with open('./get_stockprice.lock', "w") as lockFile:
+        try:
+            # ロック出来るまで待つ
+            fcntl.flock(lockFile, fcntl.LOCK_EX)
+        except IOError as ex:  # 排他制御エラー
+            print(str(code) + " : Failed in Exclusive Lock.")
+            return
+
+        try:
+            # 株価取得処理を呼び出す        
+            dfs = get_stockprice(code, from_date, to_date)
+        finally:
+            # ロック解除
+            fcntl.flock(lockFile, fcntl.LOCK_UN)
 
     return dfs
 
@@ -75,7 +97,7 @@ def register_stockprice(code_list, fromDate, toDate):
         # 株価データ取得(データフレーム)
         #---------------------------------------
         code = code_rec[0]
-        dfs = get_stockprice(code, fromDate, toDate)
+        dfs = get_stockprice_lock(code, fromDate, toDate)
 
         if dfs == None:
             #株価が取得出来ていなければスキップ

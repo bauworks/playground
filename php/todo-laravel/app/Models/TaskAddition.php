@@ -14,8 +14,13 @@ class TaskAddition
 
     public function plusOne($tasks)
     {
-        $tmptask = clone $tasks[0];
+        $tmptask = new \stdClass();
+        $tmptask->id = 0;
         $tmptask->name = $this->plusone->name;
+        $tmptask->priority = $this->plusone->priority;
+        $tmptask->explanation = $this->plusone->explanation;
+        // dd($tmptask);
+
         $tasks[count($tasks)] = $tmptask;
         return $tasks;
     }

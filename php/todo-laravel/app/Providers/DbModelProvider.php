@@ -19,6 +19,8 @@ class DbModelProvider extends ServiceProvider
         $this->app->bind(\App\Models\TaskAddition::class, \App\Models\TaskAddition::class);
         $this->app->bind(\App\Models\TaskPlusOne::class, \App\Models\TaskPlusOne::class);
 
+        // 優先度テーブル
+        $this->app->bind(\App\Models\Priority::class, \App\Models\Priority::class);
     }
 
     /**

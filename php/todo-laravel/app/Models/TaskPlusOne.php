@@ -7,7 +7,9 @@ class TaskPlusOne
 {
     public function __construct()
     {
-        $this->name = "タスク+1";
+        $this->name = "PlusOneタスク";
+        $this->priority = "MIND";
+        $this->explanation = "留意";
     }
 
 }

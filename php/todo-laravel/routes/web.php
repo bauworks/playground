@@ -27,19 +27,24 @@ Route::get('/hello',
  */
 Route::get('/',
     [App\Http\Controllers\TaskController::class, 'index']
-);
+)->name('task.tasks');
 
-// /**
-//  * 新タスク追加
-//  */
-// Route::post('/task',
-//     [App\Http\Controllers\TaskController::class, 'store']
-// );
+/**
+ * 新タスク追加
+ */
+Route::get('/create',
+    [App\Http\Controllers\TaskController::class, 'create']
+)->name('task.create');
 
-// /**
-//  * タスク削除
-//  */
-// Route::delete('/task/{task}',
-//     [App\Http\Controllers\TaskController::class, 'destroy']
-// );
+Route::post('/store',
+    [App\Http\Controllers\TaskController::class, 'store']
+)->name('task.store');
+
+
+/**
+ * タスク削除
+ */
+Route::post('/destroy{id}',
+    [App\Http\Controllers\TaskController::class, 'destroy']
+)->name('task.destroy');
 

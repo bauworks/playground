@@ -31,3 +31,8 @@ class Priority extends Model
         return Priority::all();
     }
 }
+// insert into priorities values(1, 'NORMAL', '普通', 3, now(), now());
+// insert into priorities values(2, 'HIGH', '高', 2, now(), now());
+// insert into priorities values(3, 'NORMAL', '低', 4, now(), now());
+// insert into priorities values(4, 'NORMAL', '特急', 1, now(), now());
+// insert into priorities values(5, 'NORMAL', '留意', 5, now(), now());

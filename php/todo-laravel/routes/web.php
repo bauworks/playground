@@ -21,6 +21,10 @@ Route::get('/hello',
     [App\Http\Controllers\HelloController::class, 'index']
 );
 
+Route::get('/test',
+    [App\Http\Controllers\TestController::class, 'index']
+)->name('test.index');
+
 
 /**
  * タスクダッシュボード表示
@@ -47,4 +51,5 @@ Route::post('/store',
 Route::post('/destroy{id}',
     [App\Http\Controllers\TaskController::class, 'destroy']
 )->name('task.destroy');
+
 

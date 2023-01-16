@@ -25,6 +25,10 @@ Route::get('/test',
     [App\Http\Controllers\TestController::class, 'index']
 )->name('test.index');
 
+Route::get('/fixed',
+    [App\Http\Controllers\FixedController::class, 'index']
+)->name('fixed.index');
+
 
 /**
  * タスクダッシュボード表示

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>モバイルファーストのレスポンシブCSSサンプル</title>
+<style>
+    /* 共通スタイル */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #a0d8ef;
+        @media (min-width: 768px) {
+            /* タブレット */
+            background-color: #f8e58c;
+        }
+        @media (min-width: 1024px) {
+            /* PC */
+            background-color: #f6bfbc;
+        }
+    }
+
+    /* モバイルファーストのスタイル */
+    .container {
+        width: 100%; /* まずモバイル向けに100%に設定 */
+        padding: 20px; /* 余白を追加 */
+    }
+
+    /* タブレット用スタイル */
+    @media (min-width: 768px) {
+        .container {
+            max-width: 90%; /* タブレット以上の幅で90%までに制限 */
+            margin: 0 auto; /* センター配置 */
+        }
+    }
+
+    /* PC用スタイル */
+    @media (min-width: 1024px) {
+        .container {
+            max-width: 80%; /* PC向けにさらに幅を制限 */
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>モバイルファーストのレスポンシブCSSサンプル</h1>
+        <p>この文書はモバイルファーストのレスポンシブCSSのサンプルです。ウィンドウの幅を変更して、レイアウトがどのように変化するか確認してください。</p>
+    </div>
+</body>
+</html>

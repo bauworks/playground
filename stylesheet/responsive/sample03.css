@@ -1,0 +1,40 @@
+.wrapper {
+    display: flex;
+    max-width: 1600px;
+    min-width: 980px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+main {
+    flex: 1;
+    margin: 0 20px;
+}
+aside {
+    width: 220px;
+}
+    
+.sp_only {
+    display: none;
+}
+    
+@media screen and (max-width: 480px) {
+    .wrapper {
+        display: block;
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+        min-width: initial;
+    }
+    main {
+        margin: 0;
+    }
+    aside {
+        width: 100%;
+    }
+        .pc_only {
+        display: none;
+    }
+        .sp_only {
+        display: block;
+    }
+}

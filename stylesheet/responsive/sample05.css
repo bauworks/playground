@@ -1,0 +1,113 @@
+/* BODY */
+body {
+    padding: 0;
+    margin: 0;
+}
+
+
+/*-----------------------------
+ * ヘッダー部
+ *-----------------------------*/
+header {
+    background-color: #f6bfbc;
+    width: 100vw;
+    height:70px;
+    min-width: 320px;
+}
+
+
+/*-----------------------------
+ * フッター部
+ *-----------------------------*/
+footer {
+    background-color: #bcf6bf;
+    height:50px;
+    min-width: 320px;
+}
+
+/*-----------------------------
+ * メイン部
+ *-----------------------------*/
+div.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 120px);    /* ヘッダーとフッター分を引く */
+    min-width: 320px;
+}
+
+/*** メインコンテンツ ***/
+main {
+    flex:1;
+    background-color: #cccccc;
+}
+
+/*** 余談要素 ***/
+.aside {
+    width: 100%;
+}
+
+/*** セクション ***/
+#cm-01 {
+    height: 70px;
+}
+#sp-01 {
+    height: 50px;
+}
+#sp-02 {
+    height: 30px;
+}
+#pc-01 {
+    height: 20px;
+}
+#pc-02 {
+    height: 40px;
+}
+#pc-03 {
+    height: 30px;
+}
+
+
+/*** 表示制御 ***/
+.pc_only {
+    display: none;
+    background-color: #f8e58c;
+}
+
+.sp_only {
+    display: block;
+    width:100%;
+    background-color: #a0d8ef;
+}
+
+
+/*-----------------------------
+ * 画面サイズ：タブレット
+ *-----------------------------*/
+@media screen and (min-width: 768px) {
+
+}
+
+/*-----------------------------
+ * 画面サイズ：PC
+ *-----------------------------*/
+@media screen and (min-width: 1024px) {
+    div.main-container {
+        flex-direction: row;
+    }
+    .main {
+        flex-grow: 1;
+    }
+
+    /*** 余談要素（サイドメニュー） ***/
+    .aside {
+        width: 220px;
+    }
+
+    /*** 表示制御 ***/
+    .pc_only {
+        display: block;
+    }
+    .sp_only {
+        display: none;
+    }
+}

@@ -1,0 +1,61 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="sample05.js"></script>
+    <link href="sample05.css" rel="stylesheet">
+    <link href="sample05_header.css" rel="stylesheet">
+</head>
+<body>
+    <header id="header" class="header">
+        <nav>
+            <div class="drawer">
+                <div id="logo"><a href="#"><img src="images/logo.svg" alt=""/></a></div>
+                
+                <!-- ハンバーガーメニュー部分 --> 
+                <div class="Toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            
+            <div class="menu">
+                <ul>
+                <li><a href="#">求人情報</a></li>
+                <li><a href="#">掲載企業</a></li>
+                <li><a href="#">留学生向け</a></li>
+                <li><a href="#">企業向け</a></li>
+                <li><a href="#">IZANAUについて</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="main-container">
+    
+        <aside class="sp_only aside">
+            <section id="sp-01" >スマホ01</section>
+        </aside>
+        
+        <main id="main" class="main">
+            メインコンテンツ
+        </main>
+        
+        <aside class="aside">
+            <section id="sp-02" class="sp_only">スマホ02</section>
+            <section id="cm-01" class="">共通01</section>
+            <section id="pc-01" class="pc_only">PC01</section>
+            <section id="pc-02" class="pc_only">PC02</section>
+            <section id="pc-03" class="pc_only">PC03</section>
+        </aside>
+    
+    </div>
+    
+    <footer id="footer" class="footer">
+    フッタ
+    </footer>
+
+</body>
+</html>

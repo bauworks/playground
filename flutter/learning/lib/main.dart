@@ -112,6 +112,34 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            const Text(
+              'BAUWORKS.Bold',
+              style: TextStyle(
+                fontWeight: FontWeight.bold
+              )
+            ),
+            const Text(
+              'BAUWORKS.Italic',
+              style: TextStyle(
+                fontStyle: FontStyle.italic
+              )
+            ),
+            const Text(
+              'BAUWORKS.Size36',
+              style: TextStyle(
+                fontSize: 36
+              )
+            ),
+            const Text(
+              'BAUWORKS.Red',
+              style: TextStyle(
+                color: Colors.red
+              )
+            ),
+            const Text(
+              'BAUWORKS.Right',
+              textAlign: TextAlign.right
+            ),
           ],
         ),
       ),
